@@ -1,0 +1,429 @@
+{
+    "individual_investors": [
+        {
+            "name": "Rakesh Jhunjhunwala and Associates",
+            "company_holdings": 27,
+            "net_worth": "50,072",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/rakesh-jhunjhunwala-and-associates",
+            "pid": "53781"
+        },
+        {
+            "name": "Radhakishan Damani",
+            "company_holdings": 13,
+            "net_worth": "163,805",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/radhakishan-damani",
+            "pid": "178317"
+        },
+        {
+            "name": "Premji and Associates",
+            "company_holdings": 1,
+            "net_worth": "117,597",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/premji-and-associates",
+            "pid": "584333"
+        },
+        {
+            "name": "Mukul Agrawal",
+            "company_holdings": 56,
+            "net_worth": "7,216",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/mukul-agrawal",
+            "pid": "53774"
+        },
+        {
+            "name": "Mukul Mahavir Prasad Agrawal",
+            "company_holdings": 53,
+            "net_worth": "6,825",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/mukul-mahavir-prasad-agrawal",
+            "pid": "53775"
+        },
+        {
+            "name": "Ashish Dhawan",
+            "company_holdings": 11,
+            "net_worth": "3,297",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/ashish-dhawan",
+            "pid": "53745"
+        },
+        {
+            "name": "Ashish Kacholia",
+            "company_holdings": 42,
+            "net_worth": "3,165",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/ashish-kacholia",
+            "pid": "53746"
+        },
+        {
+            "name": "Madhusudan Kela",
+            "company_holdings": 11,
+            "net_worth": "2,327",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/madhusudan-kela",
+            "pid": "584325"
+        },
+        {
+            "name": "Anil Kumar Goel and Associates",
+            "company_holdings": 33,
+            "net_worth": "2,148",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/anil-kumar-goel-and-associates",
+            "pid": "53743"
+        },
+        {
+            "name": "Vijay Kishanlal Kedia",
+            "company_holdings": 15,
+            "net_worth": "1,883",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/vijay-kishanlal-kedia",
+            "pid": "53805"
+        },
+        {
+            "name": "Bhavook Tripathi",
+            "company_holdings": 1,
+            "net_worth": "1,614",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/bhavook-tripathi",
+            "pid": "584330"
+        },
+        {
+            "name": "Dilipkumar Lakhi",
+            "company_holdings": 10,
+            "net_worth": "1,538",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/dilipkumar-lakhi",
+            "pid": "53755"
+        },
+        {
+            "name": "Anuj Anantrai Sheth and Associates",
+            "company_holdings": 6,
+            "net_worth": "1,211",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/anuj-anantrai-sheth-and-associates",
+            "pid": "53744"
+        },
+        {
+            "name": "Ajay Upadhyaya",
+            "company_holdings": 16,
+            "net_worth": "1,163",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/ajay-upadhyaya",
+            "pid": "53739"
+        },
+        {
+            "name": "Hitesh Satishchandra Doshi",
+            "company_holdings": 7,
+            "net_worth": "1,025",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/hitesh-satishchandra-doshi",
+            "pid": "53763"
+        },
+        {
+            "name": "Vanaja Sundar Iyer",
+            "company_holdings": 12,
+            "net_worth": "946",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/vanaja-sundar-iyer",
+            "pid": "53804"
+        },
+        {
+            "name": "Sanjiv Dhireshbhai Shah",
+            "company_holdings": 10,
+            "net_worth": "878",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/sanjiv-dhireshbhai-shah",
+            "pid": "53791"
+        },
+        {
+            "name": "Amal Parikh",
+            "company_holdings": 5,
+            "net_worth": "652",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/amal-parikh",
+            "pid": "584331"
+        },
+        {
+            "name": "Ricky Ishwardas Kirpalani",
+            "company_holdings": 4,
+            "net_worth": "651",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/ricky-ishwardas-kirpalani",
+            "pid": "53783"
+        },
+        {
+            "name": "Seetha Kumari",
+            "company_holdings": 10,
+            "net_worth": "638",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/seetha-kumari",
+            "pid": "53795"
+        }
+    ],
+    "institutional_investors": [
+        {
+            "name": "President Of India",
+            "company_holdings": 77,
+            "net_worth": "4,033,263",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/president-of-india",
+            "pid": "53991"
+        },
+        {
+            "name": "SBI Group",
+            "company_holdings": 307,
+            "net_worth": "897,039",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/sbi-group",
+            "pid": "597531"
+        },
+        {
+            "name": "HDFC Group",
+            "company_holdings": 283,
+            "net_worth": "509,511",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/hdfc-group",
+            "pid": "597532"
+        },
+        {
+            "name": "ICICI Group",
+            "company_holdings": 261,
+            "net_worth": "497,612",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/icici-group",
+            "pid": "597533"
+        },
+        {
+            "name": "Kotak Mahindra Group",
+            "company_holdings": 190,
+            "net_worth": "271,844",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/kotak-mahindra-group",
+            "pid": "53945"
+        },
+        {
+            "name": "Government Pension Fund Global",
+            "company_holdings": 96,
+            "net_worth": "137,888",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/government-pension-fund-global",
+            "pid": "53903"
+        },
+        {
+            "name": "Reliance Group",
+            "company_holdings": 25,
+            "net_worth": "118,848",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/reliance-group",
+            "pid": "621962"
+        },
+        {
+            "name": "Axis Group",
+            "company_holdings": 102,
+            "net_worth": "91,781",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/axis-group",
+            "pid": "597535"
+        },
+        {
+            "name": "SUNDARAM-GROUP",
+            "company_holdings": 55,
+            "net_worth": "82,135",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/sundaram-group",
+            "pid": "621955"
+        },
+        {
+            "name": "Birla Group",
+            "company_holdings": 133,
+            "net_worth": "70,709",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/birla-group",
+            "pid": "597534"
+        },
+        {
+            "name": "Vanguard Fund",
+            "company_holdings": 35,
+            "net_worth": "53,912",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/vanguard-fund",
+            "pid": "54044"
+        },
+        {
+            "name": "Europacific Growth Fund",
+            "company_holdings": 7,
+            "net_worth": "35,290",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/europacific-growth-fund",
+            "pid": "53883"
+        },
+        {
+            "name": "General Insurance Corporation Of India",
+            "company_holdings": 20,
+            "net_worth": "23,800",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/general-insurance-corporation-of-india",
+            "pid": "53895"
+        },
+        {
+            "name": "Amansa Holdings Private Limited",
+            "company_holdings": 22,
+            "net_worth": "19,153",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/amansa-holdings-private-limited",
+            "pid": "53821"
+        },
+        {
+            "name": "IDFC-GROUP",
+            "company_holdings": 2,
+            "net_worth": "16,546",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/idfc-group",
+            "pid": "621952"
+        },
+        {
+            "name": "Enam Securities Pvt Ltd",
+            "company_holdings": 38,
+            "net_worth": "14,234",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/enam-securities-pvt-ltd",
+            "pid": "53880"
+        },
+        {
+            "name": "The New India Assurance Company Limited",
+            "company_holdings": 31,
+            "net_worth": "13,222",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/the-new-india-assurance-company-limited",
+            "pid": "54032"
+        },
+        {
+            "name": "Goldman Sachs India Limited",
+            "company_holdings": 55,
+            "net_worth": "12,373",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/goldman-sachs-india-limited",
+            "pid": "53901"
+        },
+        {
+            "name": "Punjab National Bank",
+            "company_holdings": 12,
+            "net_worth": "10,621",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/punjab-national-bank",
+            "pid": "53993"
+        },
+        {
+            "name": "Gagandeep Credit Capital Pvt Ltd",
+            "company_holdings": 13,
+            "net_worth": "9,129",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/gagandeep-credit-capital-pvt-ltd",
+            "pid": "53894"
+        }
+    ],
+    "fii_investors": [
+        {
+            "name": "Government Of Singapore",
+            "company_holdings": 63,
+            "net_worth": "236,452",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/government-of-singapore",
+            "pid": "53902"
+        },
+        {
+            "name": "Smallcap World Fund Inc",
+            "company_holdings": 44,
+            "net_worth": "42,056",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/smallcap-world-fund-inc",
+            "pid": "54015"
+        },
+        {
+            "name": "Nalanda India Fund Limited",
+            "company_holdings": 24,
+            "net_worth": "38,071",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/nalanda-india-fund-limited",
+            "pid": "53966"
+        },
+        {
+            "name": "New World Fund Inc",
+            "company_holdings": 13,
+            "net_worth": "36,042",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/new-world-fund-inc",
+            "pid": "53972"
+        },
+        {
+            "name": "Pi Opportunities Fund I",
+            "company_holdings": 22,
+            "net_worth": "7,011",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/pi-opportunities-fund-i",
+            "pid": "53985"
+        },
+        {
+            "name": "Malabar Investments",
+            "company_holdings": 20,
+            "net_worth": "6,595",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/malabar-investments",
+            "pid": "53954"
+        },
+        {
+            "name": "Nomura India Investment Fund Mother Fund",
+            "company_holdings": 13,
+            "net_worth": "5,334",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/nomura-india-investment-fund-mother-fund",
+            "pid": "53973"
+        },
+        {
+            "name": "Saif Partners",
+            "company_holdings": 3,
+            "net_worth": "4,006",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/saif-partners",
+            "pid": "1537934"
+        },
+        {
+            "name": "East Bridge Capital Master Fund Limited",
+            "company_holdings": 7,
+            "net_worth": "3,877",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/east-bridge-capital-master-fund-limited",
+            "pid": "53873"
+        },
+        {
+            "name": "Bank Muscat India Fund",
+            "company_holdings": 8,
+            "net_worth": "3,731",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/bank-muscat-india-fund",
+            "pid": "53837"
+        },
+        {
+            "name": "Atyant Capital India Fund",
+            "company_holdings": 10,
+            "net_worth": "2,474",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/atyant-capital-india-fund",
+            "pid": "53833"
+        },
+        {
+            "name": "Acacia Institutional Partners Lp",
+            "company_holdings": 15,
+            "net_worth": "2,042",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/acacia-institutional-partners-lp",
+            "pid": "53815"
+        },
+        {
+            "name": "Citigroup Global Markets Mauritius Private Limited",
+            "company_holdings": 4,
+            "net_worth": "1,695",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/citigroup-global-markets-mauritius-private-limited",
+            "pid": "53851"
+        },
+        {
+            "name": "Valiant Mauritius Partners Offshore Limited",
+            "company_holdings": 4,
+            "net_worth": "1,415",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/valiant-mauritius-partners-offshore-limited",
+            "pid": "54042"
+        },
+        {
+            "name": "Sequoia",
+            "company_holdings": 3,
+            "net_worth": "920",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/sequoia",
+            "pid": "1537933"
+        },
+        {
+            "name": "Acacia Conservation Fund Lp",
+            "company_holdings": 8,
+            "net_worth": "689",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/acacia-conservation-fund-lp",
+            "pid": "53814"
+        },
+        {
+            "name": "Elara India Opportunities Fund Limited",
+            "company_holdings": 5,
+            "net_worth": "129",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/elara-india-opportunities-fund-limited",
+            "pid": "53876"
+        },
+        {
+            "name": "Acacia Banyan Partners",
+            "company_holdings": 2,
+            "net_worth": "124",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/acacia-banyan-partners",
+            "pid": "53813"
+        },
+        {
+            "name": "Silver Stallion Limited",
+            "company_holdings": 7,
+            "net_worth": "93",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/silver-stallion-limited",
+            "pid": "54014"
+        },
+        {
+            "name": "Lotus Global Investments Ltd",
+            "company_holdings": 1,
+            "net_worth": "51",
+            "url": "https://www.moneycontrol.com/india-investors-portfolio/lotus-global-investments-ltd",
+            "pid": "53951"
+        }
+    ],
+    "last_updated": "2024-12-28 22:35:02 UTC"
+}

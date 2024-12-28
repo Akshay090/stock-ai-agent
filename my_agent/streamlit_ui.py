@@ -32,7 +32,7 @@ async def prompt_ai(messages):
 
 
 async def main():
-    st.title("Pydantic AI Chatbot")
+    st.title("Stock AI Chatbot")
 
     # Initialize chat history
     if "messages" not in st.session_state:

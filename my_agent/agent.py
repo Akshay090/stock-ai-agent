@@ -29,7 +29,9 @@ client = AsyncAzureOpenAI(
     azure_deployment=os.getenv("AZURE_DEPLOYMENT"),
 )
 
+
 model = OpenAIModel("gpt-4o", openai_client=client)
+
 
 # 'if-token-present' means nothing will be sent (and the example will work) if you don't have logfire configured
 logfire.configure(send_to_logfire="if-token-present")
