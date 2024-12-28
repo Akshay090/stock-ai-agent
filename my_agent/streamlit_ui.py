@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 from httpx import AsyncClient
 import streamlit as st
 import os
+from devtools import debug
 
 from pydantic_ai.messages import ModelResponse, UserPromptPart
 
@@ -18,6 +19,7 @@ async def prompt_ai(messages):
         async with web_search_agent.run_stream(
             messages[-1].content, deps=deps, message_history=messages[:-1]
         ) as result:
+            debug(result)
             async for message in result.stream_text(delta=True):
                 yield message
 
