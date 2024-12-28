@@ -8,6 +8,8 @@ wheels/
 
 # Virtual environments
 .venv
-pydantic_ai_docs
 
 .env
+.archive
+
+pydantic_ai_docs/

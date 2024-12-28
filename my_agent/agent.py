@@ -89,7 +89,7 @@ async def search_web(ctx: RunContext[Deps], web_query: str) -> str:
     return "\n".join(results) if results else "No results found for the query."
 
 
-async def ai_agents():
+async def main():
     async with AsyncClient() as client:
         brave_api_key = os.getenv("BRAVE_API_KEY", None)
         deps = Deps(client=client, brave_api_key=brave_api_key)
