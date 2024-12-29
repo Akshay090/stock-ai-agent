@@ -5,7 +5,7 @@ from openai import AzureOpenAI
 import os
 import requests
 from pydantic import BaseModel, HttpUrl
-from typing import List, Optional
+from typing import List, Literal, Optional
 from datetime import datetime, timezone
 from bs4 import BeautifulSoup
 import diskcache as dc
@@ -25,6 +25,28 @@ client = AzureOpenAI(
 cache_dir = os.path.join(tempfile.gettempdir(), "structured_data_cache")
 cache = dc.Cache(cache_dir)
 
+
+class Investor(BaseModel):
+    name: str
+    company_holdings: int
+    net_worth: str
+    url: HttpUrl
+    portfolio_id: Optional[str] = None
+
+InvestorList = List[Investor]
+
+class InvestorData(BaseModel):
+    individual_investors: InvestorList
+    institutional_investors: InvestorList
+    fii_investors: InvestorList
+    last_updated: str
+
+
+InvestorCategory = Literal[
+    "individual_investors", "institutional_investors", "fii_investors"
+]
+
+
 def get_page_html(url):
     response = requests.get(url)
     if response.status_code != 200:
@@ -33,21 +55,10 @@ def get_page_html(url):
         )
     return response.text
 
+
 def convert_html_to_markdown(html_content):
     return html2text.html2text(html_content)
 
-class Investor(BaseModel):
-    name: str
-    company_holdings: int
-    net_worth: str
-    url: HttpUrl
-    pid: Optional[str] = None
-
-class StructuredData(BaseModel):
-    individual_investors: List[Investor]
-    institutional_investors: List[Investor]
-    fii_investors: List[Investor]
-    last_updated: str
 
 def get_structured_data(markdown_content):
     prompt = f"""
@@ -123,7 +134,8 @@ def get_structured_data(markdown_content):
     )
 
     # Parse the JSON response into the Pydantic model
-    return StructuredData.model_validate(structured_data_dict)
+    return InvestorData.model_validate(structured_data_dict)
+
 
 def scrape_pid_from_page(url):
     response = requests.get(url)
@@ -135,7 +147,8 @@ def scrape_pid_from_page(url):
     pid_element = soup.find("input", {"id": "pid"})
     return pid_element["value"] if pid_element else "No PID"
 
-def get_portfolio_id(structured_data: StructuredData):
+
+def get_portfolio_id(structured_data: InvestorData):
     for category in [
         "individual_investors",
         "institutional_investors",
@@ -144,39 +157,44 @@ def get_portfolio_id(structured_data: StructuredData):
         investors = getattr(structured_data, category, [])
         for investor in investors:
             url = investor.url
-            title = scrape_pid_from_page(url)
-            investor.pid = title
+            investor.portfolio_id = scrape_pid_from_page(url)
     return structured_data
+
 
 def load_cache():
     structured_data_json = cache.get("structured_data")
     if structured_data_json:
         # Convert the JSON string back to a dictionary and then to a Pydantic model
         structured_data_dict = json.loads(structured_data_json)
-        return StructuredData.model_validate(structured_data_dict)
+        return InvestorData.model_validate(structured_data_dict)
     return None
 
-def save_cache(structured_data: StructuredData):
+
+def save_cache(structured_data: InvestorData):
     # Convert the Pydantic model to a dictionary and then to a JSON string
     structured_data_json = structured_data.model_dump_json()
-    cache.set("structured_data", structured_data_json, expire=30*60)  # Cache for 30 minutes
+    cache.set(
+        "structured_data", structured_data_json, expire=30 * 60
+    )  # Cache for 30 minutes
+
 
 def write_structured_data_to_file(structured_data):
     # Convert the Pydantic model to a JSON string
     structured_data_json = structured_data.model_dump_json(indent=4)
-    
+
     # Define the data folder path
-    data_folder = os.path.join(os.path.dirname(__file__), 'data')
-    
+    data_folder = os.path.join(os.path.dirname(__file__), "data")
+
     # Create the data folder if it doesn't exist
     os.makedirs(data_folder, exist_ok=True)
-    
+
     # Define the file path
-    file_path = os.path.join(data_folder, 'investors.json')
-    
+    file_path = os.path.join(data_folder, "investors.json")
+
     # Write the JSON string to the file
-    with open(file_path, 'w') as f:
+    with open(file_path, "w") as f:
         f.write(structured_data_json)
+
 
 def main():
     url = "https://www.moneycontrol.com/india-investors-portfolio/"
@@ -204,6 +222,7 @@ def main():
     print("Saving investors json to file...")
     # Write the structured data JSON to a file in the data folder
     write_structured_data_to_file(structured_data)
+
 
 if __name__ == "__main__":
     main()

@@ -2,6 +2,7 @@ from __future__ import annotations as _annotations
 
 from dataclasses import dataclass
 from datetime import datetime
+import json
 import os
 import logfire
 from devtools import debug
@@ -14,6 +15,11 @@ from pydantic_ai.models.openai import OpenAIModel
 from pydantic_ai.tools import ToolDefinition
 
 from my_agent.models import PortfolioHolding
+from my_agent.pre_process.scrape_investors_ai import (
+    InvestorCategory,
+    InvestorData,
+    InvestorList,
+)
 
 logfire.configure()
 
@@ -43,6 +49,7 @@ current_date = datetime.now().strftime("%Y-%m-%d")
 class Deps:
     client: AsyncClient
     brave_api_key: str | None
+    investors: InvestorData
 
 
 web_search_agent = Agent(
@@ -58,13 +65,36 @@ web_search_agent = Agent(
 )
 
 
-@web_search_agent.tool_plain
-async def get_top_indian_investor_list() -> list[dict[str, str]]:
-    """Get the top Indian investors list."""
-    investors = [
-        {"name": "Vijay Kishanlal Kedia", "portfolioId": 53805},
-        {"name": "Rakesh Jhunjhunwala", "portfolioId": 53781},
-    ]
+@web_search_agent.tool
+async def get_top_indian_investor_list(
+    ctx: RunContext[Deps], category: InvestorCategory
+) -> InvestorList:
+    """Get the top Indian investors list.
+
+    Args:
+        ctx (RunContext[Deps]): The context object containing dependencies.
+        category (InvestorCategory): The category of investors to retrieve.
+            It can be one of the following:
+            - 'individual_investors'
+            - 'institutional_investors'
+            - 'fii_investors'
+
+    Returns:
+        list[dict[str, str]]: A list of dictionaries containing the names and portfolio IDs of the top Indian investors.
+    """
+    print("TOOL_CALLED - get_top_indian_investor_list")
+
+    investors = []
+    # Retrieve the correct investor list based on the category
+    if category == "individual_investors":
+        investors = ctx.deps.investors.individual_investors
+    elif category == "institutional_investors":
+        investors = ctx.deps.investors.institutional_investors
+    elif category == "fii_investors":
+        investors = ctx.deps.investors.fii_investors
+    else:
+        raise ValueError(f"Unknown category: {category}")
+
     return investors
 
 
@@ -78,7 +108,7 @@ async def prepare_portfolio_overview(
 
 @web_search_agent.tool(prepare=prepare_portfolio_overview)
 async def get_investor_portfolio_overview(
-    ctx: RunContext[Deps], portfolio_id: int
+    ctx: RunContext[Deps], portfolio_id: str
 ) -> dict:
     """
     Get the overview of an investor's portfolio.
@@ -92,6 +122,8 @@ async def get_investor_portfolio_overview(
     Returns:
         dict: The portfolio overview as a JSON object.
     """
+    print("TOOL_CALLED - get_investor_portfolio_overview", 'portfolio_id' , portfolio_id)
+
     url = "https://api.moneycontrol.com/mcapi/v1/portfolio/big-shark/overview-holding"
     params = {"page": 1, "portfolioId": portfolio_id, "deviceType": "W"}
 
@@ -109,7 +141,7 @@ async def get_investor_portfolio_overview(
 
 @web_search_agent.tool()
 async def get_investor_holdings(
-    ctx: RunContext[Deps], portfolio_id: int
+    ctx: RunContext[Deps], portfolio_id: str
 ) -> PortfolioHolding:
     """
     Get detailed investor portfolio holdings.
@@ -117,7 +149,7 @@ async def get_investor_holdings(
 
     Args:
         ctx (RunContext[Deps]): The context object containing dependencies.
-        portfolio_id (int): The unique identifier for the investor's portfolio.
+        portfolio_id: The portfolio ID of the investor.
 
     Returns:
         PortfolioHolding: A dictionary containing detailed portfolio holdings.
@@ -128,6 +160,7 @@ async def get_investor_holdings(
                 - If `changePrev` is 0, mention it as "No change".
                 - If `changePrev` is "New", highlight it in the output as "New".
     """
+    print("TOOL_CALLED - get_investor_holdings", portfolio_id, "portfolio_id")
 
     url = "https://api.moneycontrol.com/mcapi/v1/portfolio/big-shark/holdings"
     params = {"portfolioId": portfolio_id, "deviceType": "W"}
@@ -158,6 +191,8 @@ async def search_web(ctx: RunContext[Deps], web_query: str) -> str:
     Returns:
         str: The search results as a formatted string.
     """
+    print("TOOL_CALLED - search_web")
+
     if ctx.deps.brave_api_key is None:
         return "This is a test web search result. Please provide a Brave API key to get real search results."
 
@@ -195,10 +230,29 @@ async def search_web(ctx: RunContext[Deps], web_query: str) -> str:
     return "\n".join(results) if results else "No results found for the query."
 
 
+def load_deps(client: AsyncClient) -> Deps:
+    """
+    Load dependencies for the agent.
+
+    Args:
+        client (AsyncClient): The HTTP client to be used.
+
+    Returns:
+        Deps: The dependencies object.
+    """
+    brave_api_key = os.getenv("BRAVE_API_KEY", None)
+
+    # Read and parse the investors.json file
+    with open("my_agent/pre_process/data/investors.json", "r") as f:
+        investors_data = json.load(f)
+        investors = InvestorData.model_validate(investors_data)
+
+    return Deps(client=client, brave_api_key=brave_api_key, investors=investors)
+
+
 async def main():
     async with AsyncClient() as client:
-        brave_api_key = os.getenv("BRAVE_API_KEY", None)
-        deps = Deps(client=client, brave_api_key=brave_api_key)
+        deps = load_deps(client)
 
         result = await web_search_agent.run(
             "Give me some articles talking about the new release of React 19.",
