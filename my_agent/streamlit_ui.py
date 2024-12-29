@@ -35,8 +35,11 @@ async def prompt_ai(messages):
             content, deps=deps, message_history=messages[:-1]
         ) as result:
             debug(result)
-            async for message in result.stream_text(delta=True):
-                yield message
+            try:
+                async for message in result.stream_text(delta=True):
+                    yield message
+            except Exception as e:
+                debug(f"Error while streaming text: {e}")
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

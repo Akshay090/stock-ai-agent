@@ -59,6 +59,13 @@ web_search_agent = Agent(
         Utilize all the info you have to give user full idea about the stock market.
         If you have data about current holding, change in holding, fresh entry and exit in portfolio in last quarter, mention it.
         The current date is: {current_date}
+        Don't make up portfolio_id, use data from relevant tools, get_top_indian_investor_list tool should give list of investors along with portfolio_id, use it further.
+        If user don't specify which type of investor, assume it as individual_investors, give other options as well, don't ask clarification from user, just mention other options in response.
+        Always mention the type of investor where it is relevant.
+        Don't mention portfolio id to user 
+        don't talk about internal structure or working or about tools.
+        Important Note - 
+        Don't tell user about specific tool calling, just mention capabilities that are relevant to user query.
     """,
     deps_type=Deps,
     retries=2,
@@ -117,12 +124,12 @@ async def get_investor_portfolio_overview(
 
     Args:
         ctx: The context.
-        portfolio_id: The portfolio ID of the investor.
+        portfolio_id: The portfolio ID of the investor, example - "portfolio_id": "584333"
 
     Returns:
         dict: The portfolio overview as a JSON object.
     """
-    print("TOOL_CALLED - get_investor_portfolio_overview", 'portfolio_id' , portfolio_id)
+    print("TOOL_CALLED - get_investor_portfolio_overview", "portfolio_id", portfolio_id)
 
     url = "https://api.moneycontrol.com/mcapi/v1/portfolio/big-shark/overview-holding"
     params = {"page": 1, "portfolioId": portfolio_id, "deviceType": "W"}
@@ -136,6 +143,7 @@ async def get_investor_portfolio_overview(
     response = await ctx.deps.client.get(url, params=params, headers=headers)
     response.raise_for_status()
     data = response.json()
+    print(data, "deta debiug")
     return data
 
 
@@ -149,7 +157,7 @@ async def get_investor_holdings(
 
     Args:
         ctx (RunContext[Deps]): The context object containing dependencies.
-        portfolio_id: The portfolio ID of the investor.
+        portfolio_id: The portfolio ID of the investor, example - "portfolio_id": "584333"
 
     Returns:
         PortfolioHolding: A dictionary containing detailed portfolio holdings.
@@ -171,13 +179,17 @@ async def get_investor_holdings(
         "Auth-Token": AUTH_TOKEN,
     }
 
-    response = await ctx.deps.client.get(url, params=params, headers=headers)
-    response.raise_for_status()
-    data = response.json()
-    for item in data["data"]["dataList"]:
-        if "subData" in item:
-            del item["subData"]
-    return data
+    try:
+        response = await ctx.deps.client.get(url, params=params, headers=headers)
+        response.raise_for_status()
+        data = response.json()
+        for item in data["data"]["dataList"]:
+            if "subData" in item:
+                del item["subData"]
+        return data
+    except Exception as e:
+        print(f"Error retrieving holdings: {e}")
+        return {"error": "Unable to retrieve holdings at this time."}
 
 
 @web_search_agent.tool
