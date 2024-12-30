@@ -37,6 +37,9 @@ async def prompt_ai(messages):
             debug(result)
             try:
                 async for message in result.stream_text(delta=True):
+                    # stream_text would blow up in between :(
+                    # till this issue is resolved
+                    # https://github.com/pydantic/pydantic-ai/issues/469
                     yield message
             except Exception as e:
                 debug(f"Error while streaming text: {e}")
