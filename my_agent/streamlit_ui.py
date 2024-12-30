@@ -15,7 +15,7 @@ from pydantic_ai.messages import (
 from pydantic_ai import UnexpectedModelBehavior
 
 
-from .agent import web_search_agent, load_deps
+from .agent import stock_analyst_agent, load_deps
 
 load_dotenv()
 
@@ -31,7 +31,7 @@ async def prompt_ai(messages):
         else:
             raise UnexpectedModelBehavior("Last message is not a ModelRequest")
 
-        async with web_search_agent.run_stream(
+        async with stock_analyst_agent.run_stream(
             content, deps=deps, message_history=messages[:-1]
         ) as result:
             debug(result)

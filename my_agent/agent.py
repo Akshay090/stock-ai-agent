@@ -52,9 +52,9 @@ class Deps:
     investors: InvestorData
 
 
-web_search_agent = Agent(
+stock_analyst_agent = Agent(
     model,
-    model_settings={ "temperature": 0.3},
+    model_settings={"temperature": 0.3},
     system_prompt=f"""
         Your name is Avi, and you are an expert stock analyst.
         Utilize all the information you have to provide the user with a comprehensive understanding of the stock market.
@@ -82,7 +82,7 @@ web_search_agent = Agent(
 )
 
 
-@web_search_agent.tool
+@stock_analyst_agent.tool
 async def get_top_indian_investor_list(
     ctx: RunContext[Deps], category: InvestorCategory
 ) -> InvestorList:
@@ -123,7 +123,7 @@ async def prepare_portfolio_overview(
     return tool_def
 
 
-@web_search_agent.tool(prepare=prepare_portfolio_overview)
+@stock_analyst_agent.tool(prepare=prepare_portfolio_overview)
 async def get_investor_portfolio_overview(
     ctx: RunContext[Deps], portfolio_id: str
 ) -> dict:
@@ -163,7 +163,7 @@ async def get_investor_portfolio_overview(
         return {"error": "An unexpected error occurred while retrieving data."}
 
 
-@web_search_agent.tool()
+@stock_analyst_agent.tool()
 async def get_investor_holdings(
     ctx: RunContext[Deps], portfolio_id: str
 ) -> PortfolioHolding:
@@ -208,7 +208,7 @@ async def get_investor_holdings(
         return {"error": "Unable to retrieve holdings at this time."}
 
 
-@web_search_agent.tool()
+@stock_analyst_agent.tool()
 async def get_holding_history(
     ctx: RunContext[Deps], portfolio_id: str, nseCode: str
 ) -> PortfolioHolding:
@@ -276,7 +276,7 @@ async def get_holding_history(
         return {"error": "Unable to retrieve holding history at this time."}
 
 
-@web_search_agent.tool
+@stock_analyst_agent.tool
 async def search_web(ctx: RunContext[Deps], web_query: str) -> str:
     """Search the web given a query defined to answer the user's question.
 
@@ -350,7 +350,7 @@ async def main():
     async with AsyncClient() as client:
         deps = load_deps(client)
 
-        result = await web_search_agent.run(
+        result = await stock_analyst_agent.run(
             "Give me some articles talking about the new release of React 19.",
             deps=deps,
         )
